@@ -1,0 +1,48 @@
+<div class="add-project-container">
+  <h2>הוסף פרויקט חדש</h2>
+  <form [formGroup]="addProjectForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">שם הפרויקט</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="הכנס שם פרויקט"
+      />
+      @if (addProjectForm.get('name')?.touched && addProjectForm.get('name')?.invalid) {
+        <small>
+          @if (addProjectForm.get('name')?.errors?.['required']) {
+            שם הפרויקט הוא שדה חובה
+          }
+          @if (addProjectForm.get('name')?.errors?.['minlength']) {
+            שם הפרויקט חייב להכיל לפחות 3 תווים
+          }
+        </small>
+      }
+    </div>
+    <div>
+      <label for="description">תיאור הפרויקט</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="הכנס תיאור לפרויקט"
+      ></textarea>
+      @if (addProjectForm.get('description')?.touched && addProjectForm.get('description')?.invalid) {
+        <small>
+          @if (addProjectForm.get('description')?.errors?.['required']) {
+            תיאור הפרויקט הוא שדה חובה
+          }
+          @if (addProjectForm.get('description')?.errors?.['minlength']) {
+            תיאור הפרויקט חייב להכיל לפחות 10 תווים
+          }
+        </small>
+      }
+    </div>
+    <div class="button-group">
+      <button type="submit" [disabled]="addProjectForm.invalid || isLoading">
+        {{ isLoading ? 'מוסיף...' : 'הוסף פרויקט' }}
+      </button>
+      <button type="button" (click)="onCancel()">ביטול</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,66 @@
+<mat-card class="task-card">
+  <mat-card-header>
+    <mat-card-title class="task-title">{{ task().title }}</mat-card-title>
+    <div class="status-badge" [class]="'status-' + task().status">
+      {{ task().status }}
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="task-details">
+      <div class="detail-row">
+        <span class="detail-icon">📝</span>
+        <span class="detail-label">תיאור:</span>
+        <span class="detail-value">{{ task().description || 'אין תיאור' }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-icon">⚡</span>
+        <span class="detail-label">עדיפות:</span>
+        <span class="detail-value priority-badge" [class]="'priority-' + task().priority">
+          {{ task().priority }}
+        </span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-icon">👤</span>
+        <span class="detail-label">משוייך ל:</span>
+        <span class="detail-value">{{ task().assigneeId || 'לא משוייך' }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-icon">🗓</span>
+        <span class="detail-label">נוצר:</span>
+        <span class="detail-value">
+          @if(task().createdAt) {
+            {{ task().createdAt | date:'dd/MM/yyyy' }}
+          } @else {
+            -
+          }
+        </span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-icon">✏️</span>
+        <span class="detail-label">עדכון אחרון:</span>
+        <span class="detail-value">
+          @if(task().updatedAt) {
+            {{ task().updatedAt | date:'dd/MM/yyyy' }}
+          } @else {
+            -
+          }
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onEdit()" class="action-button edit-button">
+      <span>✏️ ערוך</span>
+    </button>
+    <button mat-raised-button color="warn" (click)="onDelete()" class="action-button delete-button">
+      <span>🗑 מחק</span>
+    </button>
+  </mat-card-actions>
+</mat-card>
+

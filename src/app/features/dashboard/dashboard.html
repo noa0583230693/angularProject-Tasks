@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <div class="toolbar-container">
+    <div class="logo">
+      <span class="logo-icon">📋</span>
+      <span class="logo-text">Wolf Tasks</span>
+    </div>
+
+    <nav class="navbar" aria-label="Main navigation">
+      <a mat-button routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span>📊 לוח בקרה</span>
+      </a>
+      <a mat-button routerLink="/dashboard/teams" routerLinkActive="active">
+        <span>👥 קבוצות</span>
+      </a>
+      <a mat-button routerLink="/dashboard/projects" routerLinkActive="active">
+        <span>📦 פרויקטים</span>
+      </a>
+      <a mat-button routerLink="/dashboard/tasks" routerLinkActive="active">
+        <span>✓ משימות</span>
+      </a>
+    </nav>
+
+    <button mat-raised-button (click)="logout()" class="logout-button" matTooltip="התנתק">
+      <span>🚪 התנתק</span>
+    </button>
+  </div>
+</mat-toolbar>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="app-footer">
+  <p>&copy; 2026 Wolf Tasks. כל הזכויות שמורות.</p>
+</footer>
+
+

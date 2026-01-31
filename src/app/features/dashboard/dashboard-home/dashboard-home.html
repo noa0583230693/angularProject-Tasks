@@ -1,0 +1,60 @@
+<div class="dashboard-home">
+  <div class="welcome-section">
+    <div class="welcome-content">
+      <h1 class="welcome-title">ברוכים הבאים לניהול המשימות שלכם! 👋</h1>
+      <p class="welcome-subtitle">בחרו מה תרצו לעשות:</p>
+    </div>
+  </div>
+
+  <div class="navigation-grid">
+    <button 
+      mat-raised-button 
+      class="nav-button nav-button-teams"
+      routerLink="/dashboard/teams"
+      color="primary">
+      <div class="button-content">
+        <span class="button-icon">👥</span>
+        <span class="button-label">קבוצות</span>
+        <span class="button-desc">ניהול קבוצות ועבודה בצוות</span>
+      </div>
+    </button>
+
+    <button 
+      mat-raised-button 
+      class="nav-button nav-button-projects"
+      routerLink="/dashboard/projects"
+      color="primary">
+      <div class="button-content">
+        <span class="button-icon">📦</span>
+        <span class="button-label">פרויקטים</span>
+        <span class="button-desc">צפו בכל הפרויקטים שלכם</span>
+      </div>
+    </button>
+
+    <button 
+      mat-raised-button 
+      class="nav-button nav-button-tasks"
+      routerLink="/dashboard/tasks"
+      color="primary">
+      <div class="button-content">
+        <span class="button-icon">✓</span>
+        <span class="button-label">משימות</span>
+        <span class="button-desc">ניהול כל המשימות שלכם</span>
+      </div>
+    </button>
+  </div>
+
+  <div class="info-section">
+    <mat-card class="info-card">
+      <mat-card-content>
+        <h3>💡 איך להשתמש?</h3>
+        <ul>
+          <li><strong>קבוצות:</strong> צרו קבוצות חדשות וזמינו חברים להשתתף בעבודה</li>
+          <li><strong>פרויקטים:</strong> ארגנו את העבודה שלכם בפרויקטים שונים</li>
+          <li><strong>משימות:</strong> הוסיפו משימות וקבעו עדיפויות ותאריכי יעד</li>
+          <li><strong>תגובות:</strong> שתפו את החוות דעתכם על משימות בעזרת תגובות</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

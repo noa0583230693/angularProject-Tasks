@@ -1,0 +1,50 @@
+<div class="teams-page">
+  <header class="page-header">
+    <h1>קבוצות עבודה 👥</h1>
+    <button mat-raised-button color="accent" (click)="goToAddTeam()" class="add-team-btn">+ קבוצה חדשה</button>
+  </header>
+
+  <section class="teams-container">
+    @if (teams$ | async; as teams) {
+      @if (teams.length > 0) {
+        <div class="teams-grid">
+          @for (team of teams; track team.id) {
+            <mat-card class="team-card">
+              <mat-card-header>
+                <div mat-card-avatar class="team-avatar">{{ team.name[0] }}</div>
+                <mat-card-title>{{ team.name }}</mat-card-title>
+              </mat-card-header>
+              
+              <mat-card-content>
+                <div class="team-stat">
+                  <span class="stat-icon">👥</span>
+                  <span class="stat-value">{{ team.members_count }} חברים</span>
+                </div>
+                <div class="team-stat">
+                  <span class="stat-icon">📅</span>
+                  <span class="stat-value">{{ team.created_at | date:'dd/MM/yyyy' }}</span>
+                </div>
+              </mat-card-content>
+              
+              <mat-card-actions>
+                <button mat-stroked-button (click)="viewTeamDetails(team.id)" class="action-btn projects-btn">📦 פרויקטים</button>
+                <button mat-stroked-button (click)="addMember(team.id)" class="action-btn member-btn">➕ חבר</button>
+              </mat-card-actions>
+            </mat-card>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <span class="empty-icon">📭</span>
+          <p>אין קבוצות עדיין</p>
+          <button mat-raised-button color="primary" (click)="goToAddTeam()">צור קבוצה ראשונה</button>
+        </div>
+      }
+    } @else {
+      <div class="loading-state">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>טוען קבוצות...</p>
+      </div>
+    }
+  </section>
+</div>

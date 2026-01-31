@@ -1,0 +1,30 @@
+<div class="add-team-container">
+  <h2>הוסף קבוצה חדשה</h2>
+  <form [formGroup]="addTeamForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">שם הקבוצה</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="הכנס שם קבוצה"
+      />
+      @if (addTeamForm.get('name')?.touched && addTeamForm.get('name')?.invalid) {
+        <small>
+          @if (addTeamForm.get('name')?.errors?.['required']) {
+            שם הקבוצה הוא שדה חובה
+          }
+          @if (addTeamForm.get('name')?.errors?.['minlength']) {
+            שם הקבוצה חייב להכיל לפחות 3 תווים
+          }
+        </small>
+      }
+    </div>
+    <div class="button-group">
+      <button type="submit" [disabled]="addTeamForm.invalid || isLoading">
+        {{ isLoading ? 'מוסיף...' : 'הוסף קבוצה' }}
+      </button>
+      <button type="button" (click)="onCancel()">ביטול</button>
+    </div>
+  </form>
+</div>

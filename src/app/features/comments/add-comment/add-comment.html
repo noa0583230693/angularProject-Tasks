@@ -1,0 +1,22 @@
+<p>add-comment works!</p>
+<form [formGroup]="form" (ngSubmit)="submitComment()">
+  <div>
+    <label for="body">הוסף תגובה</label>
+    <textarea
+      id="body"
+      formControlName="body"
+      placeholder="הכנס תגובה"
+    ></textarea>
+    @if (form.get('body')?.touched && form.get('body')?.invalid) {
+      <small>
+        @if (form.get('body')?.errors?.['required']) {
+          התגובה היא שדה חובה
+        }
+      </small>
+    }
+  </div>
+  <button type="submit" [disabled]="form.invalid">הוסף תגובה</button>
+  <button type="button" (click)="form.reset()">נקה</button>
+  <button type="button" (click)="closeMe.emit(true)">בטל</button>
+
+</form>

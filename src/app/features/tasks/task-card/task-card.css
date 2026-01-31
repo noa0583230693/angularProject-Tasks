@@ -1,0 +1,205 @@
+.task-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInUp 0.4s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.task-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-4px);
+}
+
+::ng-deep .task-card .mat-mdc-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(63, 81, 181, 0.05) 0%, rgba(63, 81, 181, 0.02) 100%);
+  border-bottom: 1px solid rgba(63, 81, 181, 0.1);
+}
+
+::ng-deep .task-card .mat-mdc-card-title {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #212121 !important;
+  margin: 0 !important;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge.status-TODO {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-badge.status-IN_PROGRESS {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-badge.status-DONE {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+::ng-deep .task-card .mat-mdc-card-content {
+  padding: 1.5rem;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.detail-row:hover {
+  background: rgba(63, 81, 181, 0.05);
+}
+
+.detail-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  animation: scale 0.3s ease;
+}
+
+@keyframes scale {
+  from { transform: scale(0.8); }
+  to { transform: scale(1); }
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #424242;
+  min-width: 80px;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  color: #616161;
+  flex: 1;
+  word-break: break-word;
+  font-size: 0.9rem;
+}
+
+.priority-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.priority-badge.priority-LOW {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+.priority-badge.priority-MEDIUM {
+  background: #ffe0b2;
+  color: #f57f17;
+}
+
+.priority-badge.priority-HIGH {
+  background: #ffccbc;
+  color: #d84315;
+}
+
+::ng-deep .task-card .mat-mdc-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.action-button {
+  flex: 1;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: none !important;
+  letter-spacing: 0.3px;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.action-button:active {
+  transform: translateY(0);
+}
+
+.edit-button {
+  background: linear-gradient(135deg, #3f51b5 0%, #283593 100%) !important;
+}
+
+.delete-button {
+  background: linear-gradient(135deg, #ff6f00 0%, #d84315 100%) !important;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  ::ng-deep .task-card .mat-mdc-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  ::ng-deep .task-card .mat-mdc-card-title {
+    max-width: 100%;
+  }
+
+  .detail-label {
+    min-width: 60px;
+    font-size: 0.85rem;
+  }
+
+  .detail-value {
+    font-size: 0.85rem;
+  }
+
+  ::ng-deep .task-card .mat-mdc-card-actions {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}

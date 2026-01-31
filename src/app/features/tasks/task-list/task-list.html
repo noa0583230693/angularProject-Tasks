@@ -1,0 +1,89 @@
+<div class="task-list-page">
+  <div class="page-header">
+    <h1>
+      @if(cameFromProject()) {
+        <span>📋 משימות בפרויקט {{ projectId }}</span>
+      } @else {
+        <span>📋 כל המשימות</span>
+      }
+    </h1>
+    @if(cameFromProject()) {
+      <button mat-raised-button color="primary" (click)="openAddForm()" class="add-button">
+        <span>➕ הוסף משימה חדשה</span>
+      </button>
+    }
+  </div>
+
+  @if(tasks$ | async; as tasks) {
+    @if(tasks.length === 0) {
+      <div class="empty-state">
+        <div class="empty-icon">✓</div>
+        <h3>אין משימות עדיין</h3>
+        <p>@if(cameFromProject()) {
+          התחל ע"י הוספת משימה חדשה
+        } @else {
+          אין משימות להצגה כרגע
+        }</p>
+      </div>
+    } @else {
+      <div class="tasks-grid">
+        @for (task of tasks; track task.id) {
+          <div class="task-wrapper">
+            <app-task-card
+              [task]="task"
+              (edit)="onEditTask($event)"
+              (delete)="deleteTask($event)">
+            </app-task-card>
+            <button 
+              mat-icon-button 
+              matTooltip="הצג תגובות" 
+              (click)="openComments(task.id)"
+              class="comments-button">
+              💬
+            </button>
+          </div>
+        }
+      </div>
+    }
+  }
+
+  <!-- Task Edit Modal/Popup -->
+  @if(showForm()) {
+    <div class="modal-overlay" (click)="closeForm()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2>{{ editingTask() ? '✏️ עדכן משימה' : '➕ משימה חדשה' }}</h2>
+          <button class="close-button" (click)="closeForm()">✕</button>
+        </div>
+        <div class="modal-body">
+          <app-task-form
+            [task]="editingTask()"
+            [projectId]="projectId ?? undefined"
+            (create)="createTask($event)"
+            (update)="updateTask($event)"
+            (cancel)="closeForm()">
+          </app-task-form>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Comments Modal/Popup -->
+  @if(openedCommentsTaskId(); as commentTaskId) {
+    <div class="modal-overlay" (click)="closeComments()">
+      <div class="modal-content modal-content-comments" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2>💬 תגובות על משימה</h2>
+          <button class="close-button" (click)="closeComments()">✕</button>
+        </div>
+        <div class="modal-body modal-body-comments">
+          <app-list-comments
+            [taskId]="commentTaskId"
+            (closeMeComments)="closeComments()">
+          </app-list-comments>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+

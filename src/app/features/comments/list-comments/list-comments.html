@@ -1,0 +1,18 @@
+
+<button (click)="closeMeComments.emit(true)">סגור</button>
+<button (click)="toggleAddComment()">הוסף תגובה</button>
+@if(showAddComment()) {
+  <app-add-comment (onCommentCreated)="onAddComment($event)" (closeMe)="toggleAddComment()"></app-add-comment>
+}
+
+@if (comments$ | async; as comments) {
+  @for (comment of comments; track comment.id) {
+    <div class="comment">
+      <p>{{ comment.body }}</p>
+
+    </div>
+  }
+} @else {
+  <p>אין תגובות למשימה</p>
+}
+

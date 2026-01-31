@@ -1,0 +1,37 @@
+<p>add-member works!</p>
+<form [formGroup]="formAddMember" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="id">מזהה החבר</label>
+    <input
+      id="id"
+      type="number"
+      formControlName="id"
+      placeholder="הכנס מזהה חבר"
+    />
+    @if (formAddMember.get('id')?.touched && formAddMember.get('id')?.invalid) {
+      <small>
+        @if (formAddMember.get('id')?.errors?.['required']) {
+          מזהה החבר הוא שדה חובה
+        }
+      
+      </small>
+    }
+  
+
+  <div>
+    <label for="role">תפקיד החבר</label>
+    <select id="role" formControlName="role">
+      <option value="" disabled selected>בחר תפקיד</option>
+      @for ( role of roles; track role) {
+        <option [value]="role">{{ role }}</option>
+      }
+    </select>
+    @if (formAddMember.get('role')?.touched && formAddMember.get('role')?.invalid) {
+      <small>
+        @if (formAddMember.get('role')?.errors?.['required']) {
+          תפקיד החבר הוא שדה חובה
+        }
+      </small>
+    }
+  </div>
+  <button type="submit" [disabled]="formAddMember.invalid">הוסף חבר</button>
